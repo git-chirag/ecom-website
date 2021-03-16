@@ -2,7 +2,7 @@ import { API } from "../../backend";
 import { cartEmpty } from "../../core/helper/cartHelper";
 
 export const signup = (user) => {
-    console.log("index ", JSON.stringify(user));
+    // console.log("index ", JSON.stringify(user));
     return fetch(`${API}user/`, {
         method: "POST",
         headers: {
@@ -19,24 +19,24 @@ export const signin = (user) => {
     const formData = new FormData();
 
     for (const name in user) {
-        console.log(user[name]);
+        // console.log(user[name]);
         formData.append(name, user[name]);
     }
-    console.log(formData.keys());
+    // console.log(formData.keys());
 
     return fetch(`${API}user/login/`, {
         method: "POST",
         body: formData,
     })
         .then((response) => {
-            console.log("success", response);
+            // console.log("success", response);
             return response.json();
         })
         .catch((err) => console.log(err));
 };
 
 export const authenticate = (data, next) => {
-    if (typeof window != undefined) {
+    if (typeof window !== undefined) {
         localStorage.setItem("jwt", JSON.stringify(data));
         next();
     }

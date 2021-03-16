@@ -35,20 +35,19 @@ const Signin = (props) => {
             .then((data) => {
                 console.log(data);
                 if (data.token) {
-                    let sessionToken = data.token;
-                    authenticate(sessionToken, () => {
+                    // let sessionToken = data.token;
+                    authenticate(data, () => {
                         console.log("Tokken Added");
                         setValues({
                             ...values,
                             didRedirect: true,
-
                         });
                     });
-                }
-                else {
+                } else {
                     setValues({
-                        ...values, loading: false
-                    })
+                        ...values,
+                        loading: false,
+                    });
                 }
             })
             .catch((err) => console.log(err));
@@ -56,9 +55,9 @@ const Signin = (props) => {
 
     const performRedirect = () => {
         if (isAuthenticated()) {
-            return <Redirect to="/" />
+            return <Redirect to="/" />;
         }
-    }
+    };
 
     const loadingMessage = () => {
         return (
@@ -67,8 +66,8 @@ const Signin = (props) => {
                     <h2>Loading...</h2>
                 </div>
             )
-        )
-    }
+        );
+    };
 
     const successMessage = () => {
         return (
